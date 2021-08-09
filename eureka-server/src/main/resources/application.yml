@@ -1,7 +1,9 @@
 
 spring:
   application:
-    name: eureka-server-1
+    name: eureka-server
+  profiles:
+    active: peer0
 
-server:
-  port: 9000
+#server:
+#  port: 9000
