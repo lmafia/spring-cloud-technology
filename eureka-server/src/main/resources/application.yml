@@ -1,0 +1,7 @@
+
+spring:
+  application:
+    name: eureka-server-1
+
+server:
+  port: 9000
