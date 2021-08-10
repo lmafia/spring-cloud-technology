@@ -1,0 +1,18 @@
+# 应用名称
+spring:
+  application:
+    name:
+      eureka-provider
+ # 应用服务 WEB 访问端口
+server:
+  port:
+    5001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/,http://localhost:9001/eureka/,http://localhost:9002/eureka/,http://localhost:9003/eureka/
+
+
+
+
+
