@@ -1,6 +1,7 @@
 package com.lmafia.eurekaconsumer.controller;
 
 import com.lmafia.eurekaconsumer.feign.HelloRemote;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -55,6 +56,7 @@ public class HelloController {
      * @return
      */
     @GetMapping("/hello2")
+    @HystrixCommand(defaultFallback = "fallback")
     public String helloWord2(@RequestParam("name") String name){
         String url = "http://eureka-provider/test/helloWord/?name=" +name;
         return restTemplateLoadBalance.getForObject(url, String.class);
@@ -70,5 +72,9 @@ public class HelloController {
     @GetMapping("/hello3")
     public String helloWord3(@RequestParam("name") String name){
         return helloRemote.helloWord3(name);
+    }
+
+    public String fallback(){
+        return "server is busy";
     }
 }

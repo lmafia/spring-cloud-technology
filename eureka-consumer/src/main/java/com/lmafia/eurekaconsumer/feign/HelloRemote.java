@@ -1,5 +1,6 @@
 package com.lmafia.eurekaconsumer.feign;
 
+import com.lmafia.eurekaconsumer.hystrix.HelloRemoteHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @description TODO
  * @date 2021/8/10
  */
-@FeignClient(name = "eureka-provider")
+@FeignClient(value = "eureka-provider", fallback = HelloRemoteHystrix.class)
 public interface HelloRemote {
 
     @GetMapping("/test/helloWord/")
